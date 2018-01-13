@@ -1,11 +1,11 @@
 ---
-title       : Insert the chapter title here
-description : Insert the chapter description here
+title       : Introduction
+description : Modelling and Break-Even point
 attachments :
   slides_link : https://s3.amazonaws.com/assets.datacamp.com/course/teach/slides_example.pdf
 
 ---
-## A really bad movie
+## Supply Chain Process
 
 ```yaml
 type: MultipleChoiceExercise
@@ -15,16 +15,17 @@ skills: 1
 key: 94bd77445e
 ```
 
-Have a look at the plot that showed up in the viewer to the right. Which type of movie has the worst rating assigned to it?
+Have a look at the image that showed up in the viewer to the right. Which ones are associate with the core Management Science techniques?
 
 `@instructions`
-- Adventure
-- Action
-- Animation
-- Comedy
+- Observation
+- Problem Defintion
+- Model construction
+- Solution
+- Implementation
 
 `@hint`
-Have a look at the plot. Which color does the point with the lowest rating have?
+All steps are necessary for solving a Supply Chain Analytics challenges, but two of them are more related to techniques.
 
 `@pre_exercise_code`
 ```{r}
@@ -48,7 +49,7 @@ test_mc(correct = 2, feedback_msgs = c(msg_bad, msg_success, msg_bad, msg_bad))
 ```
 
 ---
-## More movies
+## Simple Business Problem (warmup)
 
 ```yaml
 type: NormalExercise
@@ -58,19 +59,26 @@ skills: 1
 key: 8bcbbfbaad
 ```
 
-In the previous exercise, you saw a dataset about movies. In this exercise, we'll have a look at yet another dataset about movies!
+### Information
+- Business produces Basmati rice bags
+- Product costs £5 to produce
+- Product sells for £20
+- One bag requires 22 pounds of grain to make
+- Company has 1100 pounds of rice grain per day
 
-A dataset with a selection of movies, `movie_selection`, is available in the workspace.
+### Business problem
+- Determine the number of units to produce to make the most profit, given the limited amount of rice grain available.
 
 `@instructions`
-- Check out the structure of `movie_selection`.
-- Select movies with a rating of 5 or higher. Assign the result to `good_movies`.
-- Use `plot()` to  plot `good_movies$Run` on the x-axis, `good_movies$Rating` on the y-axis and set `col` to `good_movies$Genre`.
-
+- Define variables x= # units to produce (decision variable)
+- Create a model 
+  - z= £20x -£5x (objective function)
+  - 22x= 1100 lb of rice grain (resource constraint)
+- Formal Specification of Model
+ $$ \max_x {20x-5x:22x=1100} $$
 `@hint`
-- Use `str()` for the first instruction.
-- For the second instruction, you should use `...[movie_selection$Rating >= 5, ]`.
-- For the plot, use `plot(x = ..., y = ..., col = ...)`.
+- Find $x$ by solving the resource constraint. This will give you the number of units to produce (known as solution)
+- Use the solution to compute the profit $z$ (known as solution value)
 
 `@pre_exercise_code`
 ```{r}
